@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import { View, ScrollView, Dimensions, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, ScrollView, Dimensions, Text, TouchableOpacity, StyleSheet, Image } from 'react-native';
 import tinycolor from 'tinycolor2';
 
 import PageData from './components/PageData';
@@ -43,7 +43,7 @@ export default class Onboarding extends Component {
     const isLight = tinycolor(backgroundColor).getBrightness() > 180;
 
     return (
-      <View style={{ flex: 1, backgroundColor: backgroundColor, justifyContent: 'center' }}>
+        <View style={{ flex: 1, backgroundColor, justifyContent: 'center' }}>
         <ScrollView
           ref="scroll"
           pagingEnabled={true}
@@ -52,16 +52,20 @@ export default class Onboarding extends Component {
           onScroll={this.updatePosition}
           scrollEventThrottle={100}
         >
-          {pages.map(({ image, title, subtitle }, idx) => (
-            <PageData
-              key={idx}
-              isLight={isLight}
-              image={image}
-              title={title}
-              subtitle={subtitle}
-              width={width}
-              height={height}
-            />
+          {pages.map(({ image, title, subtitle, backgroundImg }, idx) => (
+            <View key={idx}>
+                <View>
+                    <Image style={{ height, width, position: 'absolute', top:0, left:0 }} source={{ uri: backgroundImg }} />
+                </View>
+                <PageData
+                  isLight={isLight}
+                  image={image}
+                  title={title}
+                  subtitle={subtitle}
+                  width={width}
+                  height={height}
+                />
+            </View>
           ))}
         </ScrollView>
         <Paginator
