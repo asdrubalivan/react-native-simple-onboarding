@@ -35,6 +35,18 @@ export default class Onboarding extends Component {
     this.setState({ currentPage: nextPage });
   };
 
+  loadImage(image) {
+    const { width, height } = Dimensions.get('window');
+    if (typeof (image) === 'string') {
+      return (
+        <Image style={{ height, width, position: 'absolute', top: 0, left: 0 }} source={{ uri: image }} />
+      );
+    }
+    return (
+      <Image style={{ height, width, position: 'absolute', top: 0, left: 0 }} source={image} />
+    );
+  }
+
   render() {
     const { width, height } = Dimensions.get('window');
     const { pages, bottomOverlay, showSkip, showNext, showDone } = this.props;
@@ -55,7 +67,7 @@ export default class Onboarding extends Component {
           {pages.map(({ image, title, subtitle, backgroundImg }, idx) => (
             <View key={idx}>
                 <View>
-                    <Image style={{ height, width, position: 'absolute', top:0, left:0 }} source={{ uri: backgroundImg }} />
+                  { this.loadImage(backgroundImg)}
                 </View>
                 <PageData
                   isLight={isLight}
@@ -86,8 +98,7 @@ export default class Onboarding extends Component {
 
 Onboarding.propTypes = {
   pages: PropTypes.arrayOf(PropTypes.shape({
-    backgroundColor: PropTypes.string.isRequired,
-    image: PropTypes.element.isRequired,
+    image: PropTypes.element,
     title: PropTypes.string.isRequired,
     subtitle: PropTypes.string.isRequired,
   })).isRequired,
