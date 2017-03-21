@@ -1,11 +1,10 @@
 import React from 'react';
 import { View, TouchableOpacity, Text } from 'react-native';
-
-import PageDots from './PageDots';
 import { SymbolButton, TextButton } from './Buttons';
 
 const getDefaultStyle = (isLight) => ({
-  color: isLight ? 'rgba(0, 0, 0, 0.8)' : '#fff',
+  color: '#474747',
+  fontWeight: 'bold',
 });
 
 const SkipButton = ({ isLight, ...props }) => (
@@ -15,9 +14,9 @@ const SkipButton = ({ isLight, ...props }) => (
 );
 
 const NextButton = ({ isLight, ...props }) => (
-  <SymbolButton {...props} textStyle={getDefaultStyle(isLight)}>
-    →
-  </SymbolButton>
+  <TextButton {...props} textStyle={getDefaultStyle(isLight)}>
+    Next
+  </TextButton>
 );
 const DoneButton = ({ isLight, size, ...props }) => (
   <SymbolButton {...props} size={size} textStyle={getDefaultStyle(isLight)} style={{ borderRadius: size / 2, backgroundColor: 'rgba(255, 255, 255, 0.10)' }}>
@@ -34,7 +33,6 @@ const Paginator = ({ isLight, overlay, showSkip, showNext, showDone, pages, curr
         null
       }
     </View>
-    <PageDots isLight={isLight} pages={pages} currentPage={currentPage} />
     <View style={styles.buttonRight}>
       {currentPage + 1 === pages ?
         (showDone ? <DoneButton isLight={isLight} size={BUTTON_SIZE} onPress={onEnd} /> : null) :
@@ -64,7 +62,7 @@ const styles = {
     width: 70,
     justifyContent: 'flex-end',
     alignItems: 'center',
-  }
+  },
 };
 
 export default Paginator;
