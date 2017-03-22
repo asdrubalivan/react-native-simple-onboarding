@@ -37,6 +37,7 @@ export default class Onboarding extends Component {
 
   loadImage(image) {
     const { width, height } = Dimensions.get('window');
+
     if (typeof (image) === 'string') {
       return (
         <Image style={{ height, width, position: 'absolute', top: 0, left: 0 }} source={{ uri: image }} />
@@ -52,7 +53,7 @@ export default class Onboarding extends Component {
     const { pages, bottomOverlay, showSkip, showNext, showDone } = this.props;
     const currentPage = pages[this.state.currentPage] || pages[0];
     const { backgroundColor } = currentPage;
-    const isLight = tinycolor(backgroundColor).getBrightness() > 180;
+    const isLight = tinycolor('blue').getBrightness() > 180;
 
     return (
         <View style={{ flex: 1, backgroundColor, justifyContent: 'center' }}>
@@ -106,6 +107,7 @@ Onboarding.propTypes = {
   showSkip: PropTypes.bool,
   showNext: PropTypes.bool,
   showDone: PropTypes.bool,
+  onEnd: React.PropTypes.func,
 };
 
 Onboarding.defaultProps = {
