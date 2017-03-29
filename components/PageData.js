@@ -21,7 +21,7 @@ const PageData = ({ isLight, image, title, subtitle, ...rest }) => (
       <View style={styles.image}>
         {image}
       </View>
-      <Text style={{ ...styles.title, ...(isLight ? styles.titleLight : {}) }}>
+      <Text style={{ ...(image !== null ? styles.titleNoImage : styles.title), ...(isLight ? styles.titleLight : {}) }}>
         {title}
       </Text>
       <Text style={{ ...styles.subtitle, ...(isLight ? styles.subtitleLight : {}) }}>
@@ -40,22 +40,34 @@ const styles = {
   },
   image: {
     flex: 0,
-    paddingBottom: 60,
     alignItems: 'center',
   },
   title: {
     textAlign: 'center',
-    fontSize: 26,
-    color: '#fff',
+    fontSize: 18,
+    color: '#1d1e20',
     paddingBottom: 15,
+    marginTop: 110,
+    backgroundColor: 'transparent',
+  },
+  titleNoImage: {
+    textAlign: 'center',
+    fontSize: 20,
+    color: '#1d1e20',
+    paddingBottom: 15,
+    marginTop: 20,
+    backgroundColor: 'transparent',
   },
   titleLight: {
     color: '#000',
   },
   subtitle: {
     textAlign: 'center',
-    fontSize: 16,
-    color: 'rgba(255, 255, 255, 0.7)',
+    fontSize: 14,
+    color: '#1d1e20',
+    backgroundColor: 'transparent',
+    marginLeft: 40,
+    marginRight: 40,
   },
   subtitleLight: {
     color: 'rgba(0, 0, 0, 0.7)',
